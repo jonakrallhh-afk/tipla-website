@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# www.tipla.app dauerhaft auf tipla.app umleiten
+[[redirects]]
+  from = "https://www.tipla.app/*"
+  to = "https://tipla.app/:splat"
+  status = 301
+  force = true
