@@ -1,0 +1,50 @@
+---
+// TIPLA Logo: Bildzeichen (3×3-Raster mit T) + Wortmarke „tipla“
+// variante="hell": für helle Hintergründe (Akzent Gold)
+// variante="dunkel": für dunkle Hintergründe (Akzent Gelb)
+interface Props {
+  variante?: 'hell' | 'dunkel';
+  groesse?: number; // Höhe der Wortmarke in px
+}
+
+const { variante = 'hell', groesse = 40 } = Astro.props;
+
+const farben =
+  variante === 'dunkel'
+    ? { t: '#F6F6F3', leer: '#3A3D47', akzent: '#F0C02A', schrift: '#F6F6F3' }
+    : { t: '#111318', leer: '#D3D4DB', akzent: '#A57A00', schrift: '#111318' };
+
+const zeichen = Math.round(groesse * 0.95);
+---
+
+<span class="logo" style={`--groesse:${groesse}px;--farbe:${farben.schrift}`}>
+  <svg viewBox="0 0 48 48" width={zeichen} height={zeichen} aria-hidden="true">
+    <circle cx="12" cy="12" r="5" fill={farben.t}></circle>
+    <circle cx="24" cy="12" r="5" fill={farben.t}></circle>
+    <circle cx="36" cy="12" r="5" fill={farben.t}></circle>
+    <circle cx="12" cy="24" r="5" fill={farben.leer}></circle>
+    <circle cx="24" cy="24" r="5" fill={farben.akzent}></circle>
+    <circle cx="36" cy="24" r="5" fill={farben.leer}></circle>
+    <circle cx="12" cy="36" r="5" fill={farben.leer}></circle>
+    <circle cx="24" cy="36" r="5" fill={farben.t}></circle>
+    <circle cx="36" cy="36" r="5" fill={farben.leer}></circle>
+  </svg>
+  <span class="wortmarke">tipla</span>
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--groesse) * 0.22);
+  }
+
+  .wortmarke {
+    font-family: var(--schrift-marke);
+    font-weight: 700;
+    font-size: var(--groesse);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--farbe);
+  }
+</style>
