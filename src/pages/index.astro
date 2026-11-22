@@ -1,22 +1,25 @@
 ---
 import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
 ---
 
 <Base title="TIPLA – Planungssoftware für Tischlereien" noindex>
   <main class="wrap">
-    <p class="marke">TIPLA</p>
+    <a href="/" class="marke" aria-label="TIPLA Startseite">
+      <Logo variante="hell" groesse={44} />
+    </a>
     <h1>Weniger Büro.<br />Mehr Werkstatt.</h1>
     <p class="unterzeile">
       Die Planungssoftware für Tischlereien. Gebaut von einem Tischlermeister in Hamburg.
     </p>
-    <p class="hinweis">Bald verfügbar.</p>
+    <p class="hinweis"><span class="punkt" aria-hidden="true"></span>Bald verfügbar</p>
   </main>
 </Base>
 
 <style>
   .wrap {
     min-height: 100vh;
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
     display: flex;
@@ -25,17 +28,18 @@ import Base from '../layouts/Base.astro';
   }
 
   .marke {
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    color: var(--akzent);
-    margin: 0 0 1.5rem;
+    align-self: flex-start;
+    text-decoration: none;
+    margin-bottom: 3rem;
   }
 
   h1 {
-    font-size: clamp(2.4rem, 7vw, 4rem);
-    line-height: 1.05;
+    font-family: var(--schrift-marke);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 7.5vw, 4.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
     margin: 0 0 1.25rem;
-    color: var(--holz-dunkel);
   }
 
   .unterzeile {
@@ -46,14 +50,23 @@ import Base from '../layouts/Base.astro';
   }
 
   .hinweis {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
     align-self: flex-start;
     margin: 0;
-    padding: 0.6rem 1rem;
+    padding: 0.65rem 1.1rem;
     border-radius: 999px;
-    background: var(--holz-dunkel);
-    color: var(--holz-hell);
+    background: var(--tinte);
+    color: var(--papier);
     font-weight: 600;
     font-size: 0.95rem;
+  }
+
+  .punkt {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--gelb);
   }
 </style>
