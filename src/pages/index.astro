@@ -188,9 +188,15 @@ const schritte = [
     <!-- Warum TIPLA -->
     <section class="abschnitt" id="warum">
       <div class="innen warum">
-        <div class="bild-platzhalter bild-portrait" role="img" aria-label="Platzhalter für Foto in der Werkstatt">
-          <span>Foto: du in der Werkstatt</span>
-        </div>
+        <img
+          class="bild-portrait"
+          src="/screens/werkstatt.webp"
+          alt="Tischlermeister und Gründer von TIPLA vor dem Plattenlager seiner Tischlerei"
+          width="1000"
+          height="1250"
+          loading="lazy"
+          decoding="async"
+        />
         <div>
           <h2>Aus der Werkstatt. Für die Werkstatt.</h2>
           <p>
@@ -509,8 +515,6 @@ const schritte = [
 
   .bild-portrait {
     aspect-ratio: 4 / 5;
-    border-color: var(--grau-hell);
-    color: var(--text-leise);
   }
 
   /* Abschnitte */
@@ -621,9 +625,14 @@ const schritte = [
     align-items: center;
   }
 
-  .warum > .bild-platzhalter {
+  .warum > .bild-portrait {
     flex: 1 1 280px;
     max-width: 380px;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    object-fit: cover;
   }
 
   .warum > div:last-child {
