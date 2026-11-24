@@ -14,32 +14,39 @@ const funktionen = [
   {
     titel: 'Jeder Auftrag an einem Ort',
     text: 'Vom ersten Anruf bis zur Abnahme. Du siehst jederzeit, wo ein Projekt steht.',
-    bild: 'Projektübersicht',
+    bild: 'projektuebersicht',
+    alt: 'Projektübersicht mit Phasen von Anfrage bis Abschluss',
   },
   {
     titel: 'Angebot in Minuten statt Stunden',
     text: 'Positionen, Material und Stunden zusammenklicken oder einfach diktieren. Aus dem Angebot wird mit einem Klick die Rechnung.',
-    bild: 'Angebot',
+    bild: 'angebot',
+    alt: 'Angebot mit Artikelliste und Positionen',
   },
   {
     titel: 'Deine Kunden im Blick',
     text: 'Kontakte, frühere Aufträge und Notizen an einer Stelle. Kein Suchen mehr in alten Ordnern.',
-    bild: 'Kundenkartei',
+    bild: 'kundenkartei',
+    alt: 'Kundenkartei mit Projekten, Rechnungen und Kontakt',
   },
   {
     titel: 'Die Plantafel, die mitkommt',
     text: 'Wer arbeitet wann an welchem Projekt. Auf dem Handy auch auf der Baustelle.',
-    bild: 'Plantafel',
+    bild: 'plantafel',
+    alt: 'Plantafel mit Projekten und Mitarbeitern im Wochenraster',
   },
   {
     titel: 'Die Mappe, die nicht verloren geht',
     text: 'Maße, Zeichnungen, Fotos und Notizen zum Auftrag. Digital und für das ganze Team abrufbar.',
-    bild: 'Projektmappe',
+    bild: 'projektmappe',
+    alt: 'Projektmappe mit Phasen, Zeiträumen und Auftragswert',
   },
   {
-    titel: 'Schluss mit Stundenzetteln',
-    text: 'Jeder Mitarbeiter erfasst seine Zeit per Handy. Die Stunden landen direkt beim Projekt.',
-    bild: 'Zeiterfassung',
+    titel: 'Stunden im Blick',
+    text: 'Soll aus dem Angebot, geplant aus der Plantafel. So siehst du früh, ob ein Auftrag aus dem Ruder läuft.',
+    bild: 'stunden',
+    alt: 'Stundenübersicht mit Soll und geplanten Stunden je Bereich',
+    hinweis: 'Zeiterfassung per Handy: bald verfügbar',
   },
 ];
 
@@ -95,7 +102,7 @@ const schritte = [
           <p class="kicker"><span class="punkt" aria-hidden="true"></span>Planungssoftware für Tischlereien</p>
           <h1>Weniger Büro.<br />Mehr Werkstatt.</h1>
           <p class="hero-unterzeile">
-            TIPLA plant deine Tischlerei: Projekte, Angebote, Plantafel und Zeiterfassung in einem System.
+            TIPLA plant deine Tischlerei: Projekte, Angebote, Rechnungen und Plantafel in einem System.
             Gebaut von einem Tischlermeister, nicht von einer Agentur.
           </p>
           <div class="hero-aktionen">
@@ -103,9 +110,15 @@ const schritte = [
             <a href="#funktionen" class="link-hell">So funktioniert's</a>
           </div>
         </div>
-        <div class="bild-platzhalter bild-gross" role="img" aria-label="Platzhalter für Screenshot der Plantafel">
-          <span>Screenshot Plantafel<br /><small>Laptop und Handy</small></span>
-        </div>
+        <img
+          class="bild-gross"
+          src="/screens/hero-plantafel.webp"
+          alt="TIPLA Plantafel auf Laptop und Handy"
+          width="1600"
+          height="1040"
+          fetchpriority="high"
+          decoding="async"
+        />
       </div>
     </section>
 
@@ -128,11 +141,18 @@ const schritte = [
           {
             funktionen.map((f) => (
               <article class="kachel">
-                <div class="bild-platzhalter bild-klein" role="img" aria-label={`Platzhalter für Screenshot ${f.bild}`}>
-                  <span>Screenshot {f.bild}</span>
-                </div>
+                <img
+                  class="bild-klein"
+                  src={`/screens/${f.bild}.webp`}
+                  alt={f.alt}
+                  width="1600"
+                  height="1000"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <h3>{f.titel}</h3>
                 <p>{f.text}</p>
+                {f.hinweis && <p class="abzeichen abzeichen-hell">{f.hinweis}</p>}
               </article>
             ))
           }
@@ -456,16 +476,35 @@ const schritte = [
   }
 
   .bild-gross {
-    flex: 1 1 440px;
-    min-height: 340px;
+    flex: 1 1 520px;
+    min-width: 0;
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .bild-klein {
+    display: block;
+    width: 100%;
+    height: auto;
     aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top left;
     margin-bottom: 1.25rem;
-    border-color: var(--grau-hell);
-    color: var(--text-leise);
+    border-radius: 12px;
+    border: 1px solid var(--grau-hell);
     background: var(--papier);
+  }
+
+  .abzeichen-hell {
+    display: inline-block;
+    margin: 0.9rem 0 0 !important;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: #fff3c4;
+    color: var(--tinte) !important;
+    font-size: 0.8rem;
+    font-weight: 700;
   }
 
   .bild-portrait {
