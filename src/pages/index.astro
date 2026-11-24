@@ -55,6 +55,7 @@ const ki = [
   {
     titel: 'Ein Assistent für das ganze Tool',
     text: 'Per Anruf oder Chatnachricht: Termine verschieben, Projekte anlegen, Stunden abfragen.',
+    bald: true,
   },
 ];
 
@@ -145,18 +146,22 @@ const schritte = [
         <p class="kicker kicker-dunkel"><span class="punkt" aria-hidden="true"></span>Mit KI</p>
         <h2>Sag es einfach. TIPLA erledigt den Rest.</h2>
         <p class="abschnitt-lead">
-          Du musst nicht am Schreibtisch sitzen, um dein Büro zu führen. Ein Anruf oder eine Chatnachricht reicht.
+          Du musst nicht am Schreibtisch sitzen, um Angebote zu schreiben. Sag TIPLA, was du brauchst, und prüf das Ergebnis im Büro.
         </p>
         <div class="ki-raster">
           {
             ki.map((k) => (
               <article class="ki-karte">
+                {k.bald && <p class="abzeichen">Bald verfügbar</p>}
                 <h3>{k.titel}</h3>
                 <p>{k.text}</p>
               </article>
             ))
           }
         </div>
+        <p class="hinweis-platzhalter">
+          Platzhalter Datenschutz: Hier steht später, wo TIPLA deine Daten und Sprachaufnahmen verarbeitet und speichert.
+        </p>
       </div>
     </section>
 
@@ -548,6 +553,26 @@ const schritte = [
   .ki-karte p {
     margin: 0;
     color: #c9cad2;
+  }
+
+  .ki-karte .abzeichen {
+    display: inline-block;
+    margin: 0 0 0.9rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: var(--gelb);
+    color: var(--tinte);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .hinweis-platzhalter {
+    margin: 2rem 0 0;
+    padding: 1rem 1.25rem;
+    border: 2px dashed #8b8d98;
+    border-radius: 12px;
+    color: #c9cad2;
+    font-size: 0.95rem;
   }
 
   .warum {
