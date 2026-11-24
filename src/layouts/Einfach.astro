@@ -1,0 +1,58 @@
+---
+// Schlichtes Layout für Unterseiten (Impressum, Datenschutz, Danke)
+import Base from './Base.astro';
+import Logo from '../components/Logo.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Base title={`${title} – TIPLA`} noindex>
+  <header class="kopf">
+    <div class="innen">
+      <a href="/" aria-label="TIPLA Startseite"><Logo variante="dunkel" groesse={28} /></a>
+    </div>
+  </header>
+  <main class="innen inhalt">
+    <slot />
+  </main>
+</Base>
+
+<style>
+  .kopf {
+    background: var(--tinte);
+    padding: 1.1rem 0;
+  }
+
+  .kopf a {
+    text-decoration: none;
+  }
+
+  .innen {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .inhalt {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+  }
+
+  .inhalt :global(h1) {
+    font-family: var(--schrift-marke);
+    letter-spacing: -0.03em;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin: 0 0 1.5rem;
+  }
+
+  .inhalt :global(.platzhalter) {
+    background: #fff6d6;
+    border: 1px solid var(--gelb);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+  }
+</style>

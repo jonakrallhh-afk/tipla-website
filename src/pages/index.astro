@@ -1,66 +1,432 @@
 ---
 import Base from '../layouts/Base.astro';
 import Logo from '../components/Logo.astro';
+
+const probleme = [
+  'Abends sitzt du noch zwei Stunden am Schreibtisch und schreibst Angebote.',
+  'Die Plantafel hängt in der Werkstatt, aber die Monteure sind auf der Baustelle.',
+  'Stundenzettel kommen zerknittert, unvollständig oder gar nicht zurück.',
+  'Maße, Fotos und Notizen zu einem Auftrag liegen in drei Ordnern, zwei Handys und einer E-Mail.',
+  'Die große Branchensoftware kostet ein Vermögen und braucht ein halbes Jahr Einarbeitung.',
+];
+
+const funktionen = [
+  {
+    titel: 'Jeder Auftrag an einem Ort',
+    text: 'Vom ersten Anruf bis zur Abnahme. Du siehst jederzeit, wo ein Projekt steht.',
+    bild: 'Projektübersicht',
+  },
+  {
+    titel: 'Angebot in Minuten statt Stunden',
+    text: 'Positionen, Material und Stunden zusammenklicken oder einfach diktieren. Aus dem Angebot wird mit einem Klick die Rechnung.',
+    bild: 'Angebot',
+  },
+  {
+    titel: 'Deine Kunden im Blick',
+    text: 'Kontakte, frühere Aufträge und Notizen an einer Stelle. Kein Suchen mehr in alten Ordnern.',
+    bild: 'Kundenkartei',
+  },
+  {
+    titel: 'Die Plantafel, die mitkommt',
+    text: 'Wer arbeitet wann an welchem Projekt. Auf dem Handy auch auf der Baustelle.',
+    bild: 'Plantafel',
+  },
+  {
+    titel: 'Die Mappe, die nicht verloren geht',
+    text: 'Maße, Zeichnungen, Fotos und Notizen zum Auftrag. Digital und für das ganze Team abrufbar.',
+    bild: 'Projektmappe',
+  },
+  {
+    titel: 'Schluss mit Stundenzetteln',
+    text: 'Jeder Mitarbeiter erfasst seine Zeit per Handy. Die Stunden landen direkt beim Projekt.',
+    bild: 'Zeiterfassung',
+  },
+];
+
+const ki = [
+  {
+    titel: 'Kalkulieren per Sprache',
+    text: 'Sag, was du brauchst. TIPLA rechnet Material, Stunden und Preis zusammen.',
+  },
+  {
+    titel: 'Angebote und Rechnungen auf Zuruf',
+    text: 'Diktier das Angebot auf dem Weg von der Baustelle. Im Büro liegt es fertig zur Prüfung bereit.',
+  },
+  {
+    titel: 'Ein Assistent für das ganze Tool',
+    text: 'Per Anruf oder Chatnachricht: Termine verschieben, Projekte anlegen, Stunden abfragen.',
+  },
+];
+
+const schritte = [
+  {
+    titel: 'Demo anfragen',
+    text: 'Formular ausfüllen. Wir melden uns innerhalb von 24 Stunden.',
+  },
+  {
+    titel: 'Gemeinsam anschauen',
+    text: '30 Minuten per Video oder vor Ort in Hamburg. Wir zeigen TIPLA an einem Auftrag aus deinem Alltag.',
+  },
+  {
+    titel: 'Loslegen',
+    text: 'Wir richten TIPLA für deinen Betrieb ein und übernehmen deine Kunden und Projekte.',
+  },
+];
 ---
 
 <Base title="TIPLA – Planungssoftware für Tischlereien" noindex>
-  <main class="wrap">
-    <a href="/" class="marke" aria-label="TIPLA Startseite">
-      <Logo variante="hell" groesse={44} />
-    </a>
-    <h1>Weniger Büro.<br />Mehr Werkstatt.</h1>
-    <p class="unterzeile">
-      Die Planungssoftware für Tischlereien. Gebaut von einem Tischlermeister in Hamburg.
-    </p>
-    <p class="hinweis"><span class="punkt" aria-hidden="true"></span>Bald verfügbar</p>
+  <header class="kopf">
+    <div class="innen kopf-innen">
+      <a href="/" class="marke" aria-label="TIPLA Startseite"><Logo variante="dunkel" groesse={30} /></a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="#funktionen">Funktionen</a>
+        <a href="#warum">Warum TIPLA</a>
+        <a href="#demo" class="knopf knopf-klein">Demo anfragen</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="innen hero-innen">
+        <div class="hero-text">
+          <p class="kicker"><span class="punkt" aria-hidden="true"></span>Planungssoftware für Tischlereien</p>
+          <h1>Weniger Büro.<br />Mehr Werkstatt.</h1>
+          <p class="hero-unterzeile">
+            TIPLA plant deine Tischlerei: Projekte, Angebote, Plantafel und Zeiterfassung in einem System.
+            Gebaut von einem Tischlermeister, nicht von einer Agentur.
+          </p>
+          <div class="hero-aktionen">
+            <a href="#demo" class="knopf">Demo anfragen</a>
+            <a href="#funktionen" class="link-hell">So funktioniert's</a>
+          </div>
+        </div>
+        <div class="bild-platzhalter bild-gross" role="img" aria-label="Platzhalter für Screenshot der Plantafel">
+          <span>Screenshot Plantafel<br /><small>Laptop und Handy</small></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="abschnitt">
+      <div class="innen schmal">
+        <h2>Kennst du das?</h2>
+        <ul class="problemliste">
+          {probleme.map((p) => <li>{p}</li>)}
+        </ul>
+        <p class="ueberleitung">Genau so war es bei uns auch. Deshalb gibt es TIPLA.</p>
+      </div>
+    </section>
+
+    <!-- Funktionen -->
+    <section class="abschnitt abschnitt-weiss" id="funktionen">
+      <div class="innen">
+        <h2>Alles, was deine Tischlerei braucht.<br />Nichts, was sie nicht braucht.</h2>
+        <div class="kacheln">
+          {
+            funktionen.map((f) => (
+              <article class="kachel">
+                <div class="bild-platzhalter bild-klein" role="img" aria-label={`Platzhalter für Screenshot ${f.bild}`}>
+                  <span>Screenshot {f.bild}</span>
+                </div>
+                <h3>{f.titel}</h3>
+                <p>{f.text}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- KI -->
+    <section class="abschnitt abschnitt-dunkel" id="ki">
+      <div class="innen">
+        <p class="kicker kicker-dunkel"><span class="punkt" aria-hidden="true"></span>Mit KI</p>
+        <h2>Sag es einfach. TIPLA erledigt den Rest.</h2>
+        <p class="abschnitt-lead">
+          Du musst nicht am Schreibtisch sitzen, um dein Büro zu führen. Ein Anruf oder eine Chatnachricht reicht.
+        </p>
+        <div class="ki-raster">
+          {
+            ki.map((k) => (
+              <article class="ki-karte">
+                <h3>{k.titel}</h3>
+                <p>{k.text}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Warum TIPLA -->
+    <section class="abschnitt" id="warum">
+      <div class="innen warum">
+        <div class="bild-platzhalter bild-portrait" role="img" aria-label="Platzhalter für Foto in der Werkstatt">
+          <span>Foto: du in der Werkstatt</span>
+        </div>
+        <div>
+          <h2>Aus der Werkstatt. Für die Werkstatt.</h2>
+          <p>
+            TIPLA ist nicht in einem Büro in Berlin entstanden, sondern in einer Tischlerei in Hamburg. Ich bin
+            Tischlermeister und habe jeden Tag erlebt, wie viel Zeit Zettel, Excel und Telefonate kosten.
+          </p>
+          <p>
+            Die Software auf dem Markt war mir zu teuer, zu kompliziert oder für andere Gewerke gebaut. Also habe ich
+            TIPLA selbst entwickelt, für unseren eigenen Betrieb. Heute läuft unsere Tischlerei damit.
+          </p>
+          <ul class="merkmale">
+            <li>Von Tischlern entwickelt</li>
+            <li>Im eigenen Betrieb erprobt</li>
+            <li>Aus Hamburg</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ablauf -->
+    <section class="abschnitt abschnitt-weiss">
+      <div class="innen">
+        <h2>In drei Schritten zu TIPLA</h2>
+        <ol class="schritte">
+          {
+            schritte.map((s, i) => (
+              <li class="schritt">
+                <span class="schritt-nr" aria-hidden="true">{i + 1}</span>
+                <h3>{s.titel}</h3>
+                <p>{s.text}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <!-- Demo -->
+    <section class="abschnitt abschnitt-dunkel" id="demo">
+      <div class="innen schmal">
+        <h2>Bereit für weniger Büro?</h2>
+        <p class="abschnitt-lead">Erzähl uns kurz von deinem Betrieb. Wir melden uns für einen Termin.</p>
+        <form
+          class="formular"
+          name="demo"
+          method="POST"
+          action="/danke"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <input type="hidden" name="form-name" value="demo" />
+          <p class="versteckt">
+            <label>Nicht ausfüllen: <input name="bot-field" /></label>
+          </p>
+          <div class="feld-reihe">
+            <label class="feld">
+              <span>Name</span>
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+            <label class="feld">
+              <span>Betrieb</span>
+              <input type="text" name="betrieb" autocomplete="organization" required />
+            </label>
+          </div>
+          <div class="feld-reihe">
+            <label class="feld">
+              <span>E-Mail</span>
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+            <label class="feld">
+              <span>Telefon</span>
+              <input type="tel" name="telefon" autocomplete="tel" />
+            </label>
+          </div>
+          <label class="feld">
+            <span>Anzahl Mitarbeiter</span>
+            <select name="mitarbeiter">
+              <option value="1-5">1 bis 5</option>
+              <option value="6-20" selected>6 bis 20</option>
+              <option value="21-50">21 bis 50</option>
+              <option value="50+">mehr als 50</option>
+            </select>
+          </label>
+          <label class="zustimmung">
+            <input type="checkbox" name="datenschutz" required />
+            <span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage gespeichert werden. Mehr in der <a href="/datenschutz">Datenschutzerklärung</a>.</span>
+          </label>
+          <button type="submit" class="knopf knopf-voll">Demo anfragen</button>
+        </form>
+      </div>
+    </section>
   </main>
+
+  <footer class="fuss">
+    <div class="innen fuss-innen">
+      <Logo variante="dunkel" groesse={22} />
+      <p>Hamburg</p>
+      <nav class="fuss-nav" aria-label="Rechtliches">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+        <a href="https://app.tipla.app">Login</a>
+      </nav>
+    </div>
+  </footer>
 </Base>
 
 <style>
-  .wrap {
-    min-height: 100vh;
-    max-width: 760px;
+  .innen {
+    max-width: 1160px;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
+    padding: 0 1.5rem;
+  }
+
+  .schmal {
+    max-width: 760px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--schrift-marke);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+
+  h2 {
+    font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+    margin: 0 0 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
+  }
+
+  /* Kopfzeile */
+  .kopf {
+    background: var(--tinte);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .kopf-innen {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 68px;
+    flex-wrap: wrap;
   }
 
   .marke {
-    align-self: flex-start;
     text-decoration: none;
-    margin-bottom: 3rem;
+    display: inline-flex;
   }
 
-  h1 {
-    font-family: var(--schrift-marke);
-    font-weight: 700;
-    font-size: clamp(2.6rem, 7.5vw, 4.5rem);
-    line-height: 1.02;
-    letter-spacing: -0.03em;
-    margin: 0 0 1.25rem;
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
   }
 
-  .unterzeile {
-    font-size: 1.2rem;
-    color: var(--text-leise);
-    margin: 0 0 2.5rem;
-    max-width: 32rem;
+  .nav a:not(.knopf) {
+    color: #c9cad2;
+    text-decoration: none;
+    font-weight: 500;
   }
 
-  .hinweis {
+  .nav a:not(.knopf):hover {
+    color: var(--papier);
+  }
+
+  /* Knöpfe */
+  .knopf {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    align-self: flex-start;
-    margin: 0;
-    padding: 0.65rem 1.1rem;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 1.5rem;
     border-radius: 999px;
-    background: var(--tinte);
+    background: var(--gelb);
+    color: var(--tinte);
+    font-weight: 700;
+    text-decoration: none;
+    border: 0;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .knopf:hover {
+    background: #f5cf55;
+  }
+
+  .knopf-klein {
+    min-height: 44px;
+    padding: 0 1.1rem;
+    font-size: 0.95rem;
+  }
+
+  .knopf-voll {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .link-hell {
     color: var(--papier);
     font-weight: 600;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--tinte);
+    color: var(--papier);
+    padding: 4.5rem 0 5rem;
+  }
+
+  .hero-innen {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero-text {
+    flex: 1 1 420px;
+    min-width: 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: 1;
+    margin: 0 0 1.5rem;
+  }
+
+  .hero-unterzeile {
+    font-size: 1.2rem;
+    color: #c9cad2;
+    max-width: 34rem;
+    margin: 0 0 2rem;
+  }
+
+  .hero-aktionen {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-weight: 600;
     font-size: 0.95rem;
+    margin: 0 0 1.25rem;
+    color: #c9cad2;
+  }
+
+  .kicker-dunkel {
+    color: #c9cad2;
   }
 
   .punkt {
@@ -68,5 +434,294 @@ import Logo from '../components/Logo.astro';
     height: 0.6rem;
     border-radius: 50%;
     background: var(--gelb);
+    flex: none;
+  }
+
+  /* Platzhalter für Bilder */
+  .bild-platzhalter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px dashed #8b8d98;
+    border-radius: 16px;
+    color: #8b8d98;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .bild-gross {
+    flex: 1 1 440px;
+    min-height: 340px;
+  }
+
+  .bild-klein {
+    aspect-ratio: 16 / 10;
+    margin-bottom: 1.25rem;
+    border-color: var(--grau-hell);
+    color: var(--text-leise);
+    background: var(--papier);
+  }
+
+  .bild-portrait {
+    aspect-ratio: 4 / 5;
+    border-color: var(--grau-hell);
+    color: var(--text-leise);
+  }
+
+  /* Abschnitte */
+  .abschnitt {
+    padding: 5rem 0;
+  }
+
+  .abschnitt-weiss {
+    background: #ffffff;
+  }
+
+  .abschnitt-dunkel {
+    background: var(--tinte);
+    color: var(--papier);
+  }
+
+  .abschnitt-lead {
+    font-size: 1.15rem;
+    color: #c9cad2;
+    max-width: 36rem;
+    margin: -0.5rem 0 2.5rem;
+  }
+
+  .problemliste {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .problemliste li {
+    font-size: 1.15rem;
+    padding-left: 2rem;
+    position: relative;
+  }
+
+  .problemliste li::before {
+    content: '';
+    position: absolute;
+    left: 0.35rem;
+    top: 0.55em;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--grau-hell);
+  }
+
+  .ueberleitung {
+    font-family: var(--schrift-marke);
+    font-weight: 700;
+    font-size: 1.35rem;
+    margin: 0;
+  }
+
+  .kacheln {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .kachel p {
+    margin: 0;
+    color: var(--text-leise);
+  }
+
+  .ki-raster {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .ki-karte {
+    border: 1px solid var(--grau-dunkel);
+    border-radius: 16px;
+    padding: 1.75rem;
+  }
+
+  .ki-karte p {
+    margin: 0;
+    color: #c9cad2;
+  }
+
+  .warum {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .warum > .bild-platzhalter {
+    flex: 1 1 280px;
+    max-width: 380px;
+  }
+
+  .warum > div:last-child {
+    flex: 999 1 420px;
+    min-width: 0;
+  }
+
+  .warum p {
+    font-size: 1.1rem;
+  }
+
+  .merkmale {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .merkmale li {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid var(--grau-hell);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .schritte {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+
+  .schritt-nr {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--tinte);
+    color: var(--gelb);
+    font-family: var(--schrift-marke);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .schritt p {
+    margin: 0;
+    color: var(--text-leise);
+  }
+
+  /* Formular */
+  .formular {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .feld-reihe {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .feld {
+    display: grid;
+    gap: 0.35rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .feld input,
+  .feld select {
+    min-height: 48px;
+    padding: 0 0.9rem;
+    border-radius: 10px;
+    border: 1px solid var(--grau-dunkel);
+    background: #1b1d24;
+    color: var(--papier);
+    font: inherit;
+    font-weight: 400;
+  }
+
+  .feld input:focus,
+  .feld select:focus {
+    outline: 2px solid var(--gelb);
+    outline-offset: 1px;
+  }
+
+  .zustimmung {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    color: #c9cad2;
+  }
+
+  .zustimmung input {
+    width: 20px;
+    height: 20px;
+    margin-top: 0.15rem;
+    flex: none;
+  }
+
+  .zustimmung a {
+    color: var(--gelb);
+  }
+
+  .versteckt {
+    position: absolute;
+    left: -9999px;
+  }
+
+  /* Fuß */
+  .fuss {
+    background: var(--tinte);
+    color: #c9cad2;
+    border-top: 1px solid var(--grau-dunkel);
+    padding: 2rem 0;
+  }
+
+  .fuss-innen {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .fuss-innen p {
+    margin: 0;
+  }
+
+  .fuss-nav {
+    display: flex;
+    gap: 1.5rem;
+    margin-left: auto;
+  }
+
+  .fuss-nav a {
+    color: #c9cad2;
+  }
+
+  @media (max-width: 640px) {
+    .nav a:not(.knopf) {
+      display: none;
+    }
+
+    .hero {
+      padding: 3rem 0 3.5rem;
+    }
+
+    .abschnitt {
+      padding: 3.5rem 0;
+    }
+
+    .fuss-nav {
+      margin-left: 0;
+    }
   }
 </style>
